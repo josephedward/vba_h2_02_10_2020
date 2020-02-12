@@ -1,4 +1,3 @@
-
 Sub Stock_Market()
 
 Dim ws As Worksheet
@@ -34,6 +33,10 @@ Dim percentChange As Double
 Dim totalVolume As Variant
 
 count = 0
+openPrice = 0
+closePrice = 0
+priceDiff = 0
+percentChange = 0
 
 Dim i As Long
 For i = 2 To CLng(LastRow)
@@ -46,8 +49,13 @@ For i = 2 To CLng(LastRow)
     'Debug.Print (openPrice)
     closePrice = Cells(i + 261, 6)
     'Debug.Print (closePrice)
-    priceDiff = closePrice - openPrice
-    percentChange = (priceDiff / openPrice) * 100
+        If openPrice <> 0 And closePrice <> 0 Then
+            priceDiff = closePrice - openPrice
+            percentChange = (priceDiff / openPrice) * 100
+ '       Else
+  '          priceDiff = 0
+   '         percentChange = 0
+        End If
     Cells(count + 1, 11) = priceDiff
     Cells(count + 1, 12) = percentChange & "%"
 '    totalVolume = totalVolume + Cells(i, 7)
