@@ -76,9 +76,9 @@ For Each ws In ThisWorkbook.Worksheets
     Range("M1") = "<total volume>"
     
     
-    Range("O1") = "<greatest increase>"
-    Range("O2") = "<greatest decrease>"
-    Range("O3") = "<greatest total volume>"
+    Range("O2") = "<greatest increase>"
+    Range("O3") = "<greatest decrease>"
+    Range("O4") = "<greatest total volume>"
     
     Dim finalRow_totals As Long
     finalRow_totals = Range("L800000").End(xlUp).Row
