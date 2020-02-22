@@ -104,29 +104,29 @@ For Each ws In ThisWorkbook.Worksheets
     Range("Q4") = varMax
     
     
-    'vars for finding ticker
-    Dim rng As Range
-    Dim cell As Range
-    Dim search As Double
-    Set rng = Range("L:L")
-    Dim ticker As String
+    ' 'vars for finding ticker
+    ' Dim rng As Range
+    ' Dim cell As Range
+    ' Dim search As Double
+    ' Set rng = Range("L:L")
+    ' Dim ticker As String
     
-    'find maximum on sheet for ticker
-    search = sMax
-    'Set cell = rng(CLng(search))
-    Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-    ticker = Cells(cell.Row, cell.Column - 2)
-    'prints error if not found
-    'Debug.Print cell.Address
-    Range("P2") = ticker
+    ' 'find maximum on sheet for ticker
+    ' search = sMax
+    ' 'Set cell = rng(CLng(search))
+    ' Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
+    ' ticker = Cells(cell.Row, cell.Column - 2)
+    ' 'prints error if not found
+    ' 'Debug.Print cell.Address
+    ' Range("P2") = ticker
     
-    'find minimum on sheet for ticker
-    search = sMin
-    Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-    ticker = Cells(cell.Row, cell.Column - 2)
-    'prints error if not found
-    'Debug.Print cell.Address
-    Range("P3") = ticker
+    ' 'find minimum on sheet for ticker
+    ' search = sMin
+    ' Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
+    ' ticker = Cells(cell.Row, cell.Column - 2)
+    ' 'prints error if not found
+    ' 'Debug.Print cell.Address
+    ' Range("P3") = ticker
     
 '   **OVERFLOW**
 '    search = varMax
