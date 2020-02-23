@@ -123,34 +123,20 @@ For Each ws In ThisWorkbook.Worksheets
     Range("Q2") = sMax
     Range("Q3") = sMin
     Range("Q4") = varMax
+
+    'locate maxima and minima stock ticker names
+    Dim position As Range
+    Dim t_name As String
     
-    ' vars for finding ticker
-    ' Dim rng As Range
-    ' Dim cell As Range
-    ' Dim search As Double
-    ' Set rng = Range("L:L")
-    ' Dim ticker As String
-    ' 'find maximum on sheet for ticker
-    ' search = sMax
-    ' 'Set cell = rng(CLng(search))
-    ' Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-    ' ticker = Cells(cell.Row, cell.Column - 2)
-    ' 'prints error if not found
-    ' 'Debug.Print cell.Address
-    ' Range("P2") = ticker
-    ' 'find minimum on sheet for ticker
-    ' search = sMin
-    ' Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-    ' ticker = Cells(cell.Row, cell.Column - 2)
-    ' 'prints error if not found
-    ' 'Debug.Print cell.Address
-    ' Range("P3") = ticker
-    ' **OVERFLOW**
-    'search = varMax
-    'Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-    'ticker = CStr(Cells(cell.Row, cell.Column - 2))
-    'Range("P4") = ticker
     
+    On Error Resume Next
+        Set position = Range("L:L").Find(CLng(dblMax))
+        t_name = Cells(position.Row, position.Column - 2)
+        Range("P2") = t_name
+        Set position = Range("L:L").Find(CLng(dblMin))
+        t_name = Cells(position.Row, position.Column - 2)
+        Range("P3") = t_name
+        
     
 Next 'next sheet
 End Sub
