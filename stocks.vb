@@ -65,19 +65,36 @@ For Each ws In ThisWorkbook.Worksheets
             'zero out total volume because its a new stock
             totalVolume = 0
         End If
+        
+        ' **HANDLE LAST ROW**
+        If i = LastRow Then
+            closePrice = Cells(i, 6)
+            priceDiff = closePrice - openPrice
+            If openPrice <> 0 Then
+                    percentChange = (priceDiff / openPrice) * 100
+            End If
+            Cells(printCount + 1, 11) = priceDiff
+            Cells(printCount + 1, 12) = percentChange
+            If priceDiff > 0 Then
+                Cells(printCount + 1, 11).Interior.Color = vbGreen
+            ElseIf priceDiff < 0 Then
+                Cells(printCount + 1, 11).Interior.Color = vbRed
+            End If
+        End If
+        
         'add to total volume
         totalVolume = totalVolume + Cells(i, 7)
         'print value
         Cells(printCount + 1, 13) = totalVolume
-        '** ADD HANDLING FOR LAST ROW **
         
     Next i
+ 
+             
     'set headers
     Range("J1") = "<ticker>"
     Range("K1") = "<price difference>"
     Range("L1") = "<percentage change>"
     Range("M1") = "<total volume>"
-    
     
     Range("O1") = ""
     Range("O2") = "<greatest increase>"
@@ -99,7 +116,7 @@ For Each ws In ThisWorkbook.Worksheets
     dblMax = Application.WorksheetFunction.Max(Range("L2", rowString))
     sMax = dblMax * 100
     varMax = Application.WorksheetFunction.Max(Range("M2", rowString))
-        
+            
     Range("P1") = "<Ticker>"
     Range("Q1") = "<Value>"
     
@@ -107,14 +124,12 @@ For Each ws In ThisWorkbook.Worksheets
     Range("Q3") = sMin
     Range("Q4") = varMax
     
-    
-    ' 'vars for finding ticker
+    ' vars for finding ticker
     ' Dim rng As Range
     ' Dim cell As Range
     ' Dim search As Double
     ' Set rng = Range("L:L")
     ' Dim ticker As String
-    
     ' 'find maximum on sheet for ticker
     ' search = sMax
     ' 'Set cell = rng(CLng(search))
@@ -123,7 +138,6 @@ For Each ws In ThisWorkbook.Worksheets
     ' 'prints error if not found
     ' 'Debug.Print cell.Address
     ' Range("P2") = ticker
-    
     ' 'find minimum on sheet for ticker
     ' search = sMin
     ' Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
@@ -131,12 +145,11 @@ For Each ws In ThisWorkbook.Worksheets
     ' 'prints error if not found
     ' 'Debug.Print cell.Address
     ' Range("P3") = ticker
-    
-'   **OVERFLOW**
-'    search = varMax
-'    Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
-'    ticker = CStr(Cells(cell.Row, cell.Column - 2))
-'    Range("P4") = ticker
+    ' **OVERFLOW**
+    'search = varMax
+    'Set cell = rng.Find(What:=CLng(search), LookIn:=xlValues, MatchCase:=False, After:=ActiveCell)
+    'ticker = CStr(Cells(cell.Row, cell.Column - 2))
+    'Range("P4") = ticker
     
     
 Next 'next sheet
