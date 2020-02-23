@@ -55,6 +55,12 @@ For Each ws In ThisWorkbook.Worksheets
             'print name, difference and percentage
             Cells(printCount + 1, 10) = currentStock
             Cells(printCount, 11) = priceDiff
+            If priceDiff > 0 Then
+                Cells(printCount, 11).Interior.Color = vbGreen
+            ElseIf priceDiff < 0 Then
+                Cells(printCount, 11).Interior.Color = vbRed
+            End If
+            
             Cells(printCount, 12) = percentChange & "%"
             'zero out total volume because its a new stock
             totalVolume = 0
@@ -63,7 +69,6 @@ For Each ws In ThisWorkbook.Worksheets
         totalVolume = totalVolume + Cells(i, 7)
         'print value
         Cells(printCount + 1, 13) = totalVolume
-        
         '** ADD HANDLING FOR LAST ROW **
         
         
@@ -137,5 +142,6 @@ For Each ws In ThisWorkbook.Worksheets
     
 Next 'next sheet
 End Sub
+
 
 
