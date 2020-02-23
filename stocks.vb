@@ -71,9 +71,7 @@ For Each ws In ThisWorkbook.Worksheets
         Cells(printCount + 1, 13) = totalVolume
         '** ADD HANDLING FOR LAST ROW **
         
-        
     Next i
-    
     'set headers
     Range("J1") = "<ticker>"
     Range("K1") = "<price difference>"
@@ -81,6 +79,7 @@ For Each ws In ThisWorkbook.Worksheets
     Range("M1") = "<total volume>"
     
     
+    Range("O1") = ""
     Range("O2") = "<greatest increase>"
     Range("O3") = "<greatest decrease>"
     Range("O4") = "<greatest total volume>"
